@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 Future<List<Mhs>> fetchMhss(http.Client client) async {
   final response =
-      await client.get('https://flutterrobby.000webhostapp.com/readDatajson.php');
+      await client.get('https://testflutterku.000webhostapp.com/readDatajson.php');
 
   // Use the compute function to run parseMhss in a separate isolate.
   return compute(parseMhss, response.body);
@@ -18,27 +18,6 @@ List<Mhs> parseMhss(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
   return parsed.map<Mhs>((json) => Mhs.fromJson(json)).toList();
-}
-
-class MhsseState 
-{
-    List<Mhs> mhsse;
-
-  @override
-  void initState() {
-    mhsse = Mhs.getMhsse();
-    super.initState();
-  }
-
-    delete() async {
-    setState(() {
-    List<Mhs> temp = [];
-
-    for (Mhs mhs in temp) {
-          mhsse.remove(mhs);
-        }
-    });
-    }
 }
 
 class Mhs {
@@ -62,7 +41,6 @@ class Mhs {
 }
 
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -104,10 +82,9 @@ class MyHomePage extends StatelessWidget {
 class MhssList extends StatelessWidget {
   final List<Mhs> MhsData;
 
-    @override
-    MhsseState createState() => MhsseState();
-
   MhssList({Key key, this.MhsData}) : super(key: key);
+
+
 
 Widget viewData(var data,int index)
 {
@@ -117,7 +94,7 @@ return Container(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      color: Colors.yellow,
+      color: Colors.green,
       elevation: 10,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -153,7 +130,7 @@ return Container(
                 FlatButton(
                   child: const Text('Delete', style: TextStyle(color: Colors.white)),
                   onPressed: () {
-                      delete();
+                      .delete();
                   },
                 ),
               ],
