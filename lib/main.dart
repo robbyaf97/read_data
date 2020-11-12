@@ -20,29 +20,8 @@ List<Mhs> parseMhss(String responseBody) {
   return parsed.map<Mhs>((json) => Mhs.fromJson(json)).toList();
 }
 
-class Mhs {
-  final String nim;
-  final String nama;
-  final String kelas;
-  final String kdmatkul;
-  final String email;
-
-  Mhs({this.nim, this.nama, this.kelas, this.kdmatkul, this.email});
-
-  factory Mhs.fromJson(Map<String, dynamic> json) {
-    return Mhs(
-      nim: json['nim'] as String,
-      nama: json['nama'] as String,
-      kelas: json['kelas'] as String,
-      kdmatkul: json['kdmatkul'] as String,
-      email: json['email'] as String,
-    );
-  }
-}
-
-void main() => runApp(MyApp());
-
-class MhsseState extends State<MhssList> {
+class MhsseState extends State<MhssList> 
+{
     List<Mhs> mhsse;
     List<Mhs> selectedMhsse;
   bool sort;
@@ -76,8 +55,31 @@ onSelectedRow(bool selected, Mhs mhs) async {
         }
       }
     });
-
+  }
 }
+
+class Mhs {
+  final String nim;
+  final String nama;
+  final String kelas;
+  final String kdmatkul;
+  final String email;
+
+  Mhs({this.nim, this.nama, this.kelas, this.kdmatkul, this.email});
+
+  factory Mhs.fromJson(Map<String, dynamic> json) {
+    return Mhs(
+      nim: json['nim'] as String,
+      nama: json['nama'] as String,
+      kelas: json['kelas'] as String,
+      kdmatkul: json['kdmatkul'] as String,
+      email: json['email'] as String,
+    );
+  }
+}
+
+void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   @override
