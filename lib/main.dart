@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 Future<List<Mhs>> fetchMhss(http.Client client) async {
   final response =
-      await client.get('https://testflutterku.000webhostapp.com/readDatajson.php');
+      await client.get('https://flutterrobby.000webhostapp.com/readDatajson.php');
 
   // Use the compute function to run parseMhss in a separate isolate.
   return compute(parseMhss, response.body);
@@ -94,7 +94,7 @@ return Container(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      color: Colors.green,
+      color: Colors.yellow,
       elevation: 10,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -117,21 +117,19 @@ return Container(
            //leading: Image.network(
              //   "https://elearning.binadarma.ac.id/pluginfile.php/1/theme_lambda/logo/1602057627/ubd_logo.png",
              // ),
-            title: Text(data[index].nim, style: TextStyle(color: Colors.white)),
-            subtitle: Text(data[index].nama, style: TextStyle(color: Colors.white)),
+            title: Text(data[index].nim, style: TextStyle(color: Colors.black)),
+            subtitle: Text(data[index].nama, style: TextStyle(color: Colors.black)),
           ),
           ButtonTheme.bar(
             child: ButtonBar(
               children: <Widget>[
                 FlatButton(
-                  child: const Text('Edit', style: TextStyle(color: Colors.white)),
+                  child: const Text('Edit', style: TextStyle(color: Colors.black)),
                   onPressed: () {},
                 ),
                 FlatButton(
-                  child: const Text('Delete', style: TextStyle(color: Colors.white)),
+                  child: const Text('Delete', style: TextStyle(color: Colors.black)),
                   onPressed: () {
-                      .Delete;
-                      
                   },
                 ),
               ],
