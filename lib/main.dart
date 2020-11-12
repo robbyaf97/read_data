@@ -20,42 +20,25 @@ List<Mhs> parseMhss(String responseBody) {
   return parsed.map<Mhs>((json) => Mhs.fromJson(json)).toList();
 }
 
-class MhsseState extends State<MhssList> 
+class MhsseState 
 {
     List<Mhs> mhsse;
-    List<Mhs> selectedMhsse;
-  bool sort;
 
   @override
   void initState() {
-    sort = false;
-    selectedMhsse = [];
     mhsse = Mhs.getMhsse();
     super.initState();
   }
 
-onSelectedRow(bool selected, Mhs mhs) async {
+    delete() async {
     setState(() {
-      if (selected) {
-        selectedMhsse.add(user);
-      } else {
-        selectedMhsse.remove(user);
-      }
-    });
-  }
+    List<Mhs> temp = [];
 
-  deleteSelected() async {
-    setState(() {
-      if (selectedMhsse.isNotEmpty) {
-        List<Mhs> temp = [];
-        temp.addAll(selectedMhsse);
-        for (Mhs mhs in temp) {
+    for (Mhs mhs in temp) {
           mhsse.remove(mhs);
-          selectedMhsse.remove(mhs);
         }
-      }
     });
-  }
+    }
 }
 
 class Mhs {
@@ -170,7 +153,7 @@ return Container(
                 FlatButton(
                   child: const Text('Delete', style: TextStyle(color: Colors.white)),
                   onPressed: () {
-                      deleteSelected();
+                      delete();
                   },
                 ),
               ],
