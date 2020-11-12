@@ -42,6 +42,43 @@ class Mhs {
 
 void main() => runApp(MyApp());
 
+class MhsseState extends State<MhssList> {
+    List<Mhs> mhsse;
+    List<Mhs> selectedMhsse;
+  bool sort;
+
+  @override
+  void initState() {
+    sort = false;
+    selectedMhsse = [];
+    mhsse = Mhs.getMhsse();
+    super.initState();
+  }
+
+onSelectedRow(bool selected, Mhs mhs) async {
+    setState(() {
+      if (selected) {
+        selectedMhsse.add(user);
+      } else {
+        selectedMhsse.remove(user);
+      }
+    });
+  }
+
+  deleteSelected() async {
+    setState(() {
+      if (selectedMhsse.isNotEmpty) {
+        List<Mhs> temp = [];
+        temp.addAll(selectedMhsse);
+        for (Mhs mhs in temp) {
+          mhsse.remove(mhs);
+          selectedMhsse.remove(mhs);
+        }
+      }
+    });
+
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -82,9 +119,10 @@ class MyHomePage extends StatelessWidget {
 class MhssList extends StatelessWidget {
   final List<Mhs> MhsData;
 
+    @override
+    MhsseState createState() => MhsseState();
+
   MhssList({Key key, this.MhsData}) : super(key: key);
-
-
 
 Widget viewData(var data,int index)
 {
@@ -130,9 +168,7 @@ return Container(
                 FlatButton(
                   child: const Text('Delete', style: TextStyle(color: Colors.white)),
                   onPressed: () {
-                      data[index].nim.remove(nim);
-                      data[index].nama.remove(nama);
-                      
+                      deleteSelected();
                   },
                 ),
               ],
