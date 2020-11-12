@@ -130,8 +130,8 @@ return Container(
                 FlatButton(
                   child: const Text('Delete', style: TextStyle(color: Colors.white)),
                   onPressed: () {
-                      data[index].nim, .Delete;
-                      data[index].nama, .Delete;
+                      data[index].nim, .remove;
+                      data[index].nama, .remove;
                   },
                 ),
               ],
