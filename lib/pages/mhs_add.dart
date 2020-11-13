@@ -1,4 +1,4 @@
-import 'package:readData/pages/mhs.dart';
+import 'package:read_data/pages/mhs.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/mhs_provider.dart';
